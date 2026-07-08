@@ -81,7 +81,7 @@ These are copied only when missing, so existing files are not overwritten.
 
 ## Solo workflow
 
-For a one-person project, keep the workflow boring and fast:
+For a one-person project, keep the workflow simple and fast:
 
 ```bash
 make build
@@ -188,12 +188,4 @@ monitor_speed = 115200
 
 For J-Link or custom OpenOCD setups, edit the `Cortex-Debug: OpenOCD template` configuration in `.vscode/launch.json`.
 
-## Git ignore suggestions
 
-Add these to `.gitignore` if they are not already present:
-
-```gitignore
-.pio/
-compile_commands.json
-docs/doxygen/
-```
