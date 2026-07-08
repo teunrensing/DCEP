@@ -1,4 +1,4 @@
-# PlatformIO Linux development environment
+# Development and Control Environment PlatformIO (DCEP)
 
 Drop these files into the root of a PlatformIO project.
 
