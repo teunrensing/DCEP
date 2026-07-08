@@ -1,5 +1,10 @@
 {
   "name": "PlatformIO Firmware",
+  "initializeCommand": "mkdir -p ${localWorkspaceFolder}/.platformio",
+  "postStartCommand": [
+    "make compiledb",
+    "make init"
+  ],
   "build": {
     "dockerfile": "Dockerfile"
   },
@@ -13,7 +18,7 @@
   ],
   "mounts": [
     "source=/dev/bus/usb,target=/dev/bus/usb,type=bind,consistency=cached",
-    "source=platformio-cache,target=/home/vscode/.platformio,type=volume",
+    "source=${localWorkspaceFolder}/.platformio,target=/home/vscode/.platformio,type=bind,consistency=cached",
     "source=ccache-cache,target=/home/vscode/.cache/ccache,type=volume"
   ],
   "postCreateCommand": "bash .devcontainer/post-create.sh",
@@ -22,19 +27,45 @@
     "vscode": {
       "extensions": [
         "platformio.platformio-ide",
+        "ms-azuretools.vscode-containers",
+        " ms-vscode-remote.remote-containers",
         "llvm-vs-code-extensions.vscode-clangd",
         "ms-vscode.cpptools",
         "marus25.cortex-debug",
+        "mcu-debug.debug-tracker-vscode",
         "spmeesseman.vscode-taskexplorer",
         "usernamehw.errorlens",
         "cschlosser.doxdocgen",
         "gruntfuggly.todo-tree",
         "streetsidesoftware.code-spell-checker",
         "yzhang.markdown-all-in-one",
-        "mhutchie.git-graph"
+        "mhutchie.git-graph",
+        "eamodio.gitlens",
+        "ms-vscode.hexeditor",
+        "ms-vscode.makefile-tools"
       ],
       "settings": {
         "C_Cpp.intelliSenseEngine": "disabled",
+        "todo-tree.ripgrep": "rg",
+        "todo-tree.highlights.defaultHighlight": {
+          "icon": "alert",
+          "type": "text",
+          "foreground": "red",
+          "background": "white",
+          "opacity": 50,
+          "iconColour": "blue"
+        },
+        "todo-tree.highlights.customHighlight": {
+          "TODO": {
+            "icon": "check",
+            "type": "line"
+          },
+          "FIXME": {
+            "foreground": "black",
+            "iconColour": "yellow",
+            "gutterIcon": true
+          }
+        },
         "clangd.arguments": [
           "--background-index",
           "--clang-tidy",
@@ -42,7 +73,13 @@
           "--completion-style=detailed",
           "--header-insertion=never"
         ],
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
+        "[c]": {
+          "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+        },
+        "[cpp]": {
+          "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+        }
       }
     }
   }

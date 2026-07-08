@@ -1,16 +1,20 @@
 {
-  "recommendations": [
-    "platformio.platformio-ide",
-    "llvm-vs-code-extensions.vscode-clangd",
-    "ms-vscode.cpptools",
-    "marus25.cortex-debug",
-    "spmeesseman.vscode-taskexplorer",
-    "usernamehw.errorlens",
-    "cschlosser.doxdocgen",
-    "gruntfuggly.todo-tree",
-    "streetsidesoftware.code-spell-checker",
-    "yzhang.markdown-all-in-one",
-    "mhutchie.git-graph"
-  ]
+    "recommendations": [
+        "Jason2866.esp-decoder",
+        "cschlosser.doxdocgen",
+        "gruntfuggly.todo-tree",
+        "llvm-vs-code-extensions.vscode-clangd",
+        "marus25.cortex-debug",
+        "mhutchie.git-graph",
+        "ms-vscode.cpptools",
+        "pioarduino.pioarduino-ide",
+        "platformio.platformio-ide",
+        "spmeesseman.vscode-taskexplorer",
+        "streetsidesoftware.code-spell-checker",
+        "usernamehw.errorlens",
+        "yzhang.markdown-all-in-one"
+    ],
+    "unwantedRecommendations": [
+        "ms-vscode.cpptools-extension-pack"
+    ]
 }
-

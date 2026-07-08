@@ -4,6 +4,7 @@
 .piolibdeps/
 .clang_complete
 .gcc-flags.json
+.platformio/
 
 # Generated analysis and docs
 compile_commands.json
