@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "PlatformIO: Debug active environment",
+      "type": "platformio-debug",
+      "request": "launch",
+      "projectEnvName": "${command:platformio-ide.activeEnvironment}",
+      "preLaunchTask": "PlatformIO: Build"
+    },
+    {
+      "name": "Cortex-Debug: OpenOCD template",
+      "type": "cortex-debug",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "executable": "${workspaceFolder}/.pio/build/YOUR_ENV/firmware.elf",
+      "servertype": "openocd",
+      "configFiles": [
+        "interface/YOUR_PROBE.cfg",
+        "target/YOUR_TARGET.cfg"
+      ],
+      "runToEntryPoint": "main",
+      "showDevDebugOutput": "none",
+      "preLaunchTask": "PlatformIO: Build"
+    }
+  ]
+}
+

@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+hook_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+if [[ -f "$hook_dir/review-bot.conf" ]]; then
+  # shellcheck source=/dev/null
+  source "$hook_dir/review-bot.conf"
+fi
+
+review_bot_home="${REVIEW_BOT_HOME:-/srv/review-bot}"
+review_runner="${REVIEW_RUNNER:-$review_bot_home/bin/run-review.sh}"
+review_async="${REVIEW_ASYNC:-1}"
+repo_dir="$(cd "$(git rev-parse --git-dir)" && pwd)"
+
+while read -r old_rev new_rev ref_name; do
+  if [[ "$review_async" == "1" ]]; then
+    nohup "$review_runner" "$repo_dir" "$old_rev" "$new_rev" "$ref_name" >/dev/null 2>&1 &
+    echo "Queued local review for $ref_name at $new_rev"
+  else
+    "$review_runner" "$repo_dir" "$old_rev" "$new_rev" "$ref_name"
+  fi
+done

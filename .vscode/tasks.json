@@ -1,0 +1,442 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "PlatformIO: Build",
+      "type": "shell",
+      "command": "pio",
+      "args": [
+        "run"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "PlatformIO: Upload",
+      "type": "shell",
+      "command": "pio",
+      "args": [
+        "run",
+        "--target",
+        "upload"
+      ],
+      "dependsOn": "PlatformIO: Build",
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "PlatformIO: Monitor",
+      "type": "shell",
+      "command": "pio",
+      "args": [
+        "device",
+        "monitor"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "PlatformIO: Monitor with log",
+      "type": "shell",
+      "command": "${workspaceFolder}/.devenvironment/monitor-log.sh",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "PlatformIO: Test",
+      "type": "shell",
+      "command": "pio",
+      "args": [
+        "test"
+      ],
+      "group": "test",
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "PlatformIO: Test native Google Test",
+      "type": "shell",
+      "command": "pio",
+      "args": [
+        "test",
+        "-e",
+        "native"
+      ],
+      "group": "test",
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "PlatformIO: Native coverage",
+      "type": "shell",
+      "command": "${workspaceFolder}/.devenvironment/coverage.sh",
+      "group": "test",
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "PlatformIO: Clean",
+      "type": "shell",
+      "command": "pio",
+      "args": [
+        "run",
+        "--target",
+        "clean"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "PlatformIO: Size",
+      "type": "shell",
+      "command": "pio",
+      "args": [
+        "run",
+        "--target",
+        "size"
+      ],
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "PlatformIO: Ports",
+      "type": "shell",
+      "command": "pio",
+      "args": [
+        "device",
+        "list"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "Static Analysis: PlatformIO Check",
+      "type": "shell",
+      "command": "pio",
+      "args": [
+        "check",
+        "--fail-on-defect",
+        "medium"
+      ],
+      "group": "test",
+      "problemMatcher": [
+        "$gcc",
+        {
+          "owner": "clang-tidy",
+          "fileLocation": [
+            "relative",
+            "${workspaceFolder}"
+          ],
+          "pattern": {
+            "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error|note):\\s+(.*?)(?:\\s+\\[(.*)\\])?$",
+            "file": 1,
+            "line": 2,
+            "column": 3,
+            "severity": 4,
+            "message": 5,
+            "code": 6
+          }
+        }
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "Static Analysis: clang-tidy project",
+      "type": "shell",
+      "command": "${workspaceFolder}/.devenvironment/run-clang-tidy.sh",
+      "args": [],
+      "group": "test",
+      "problemMatcher": [
+        {
+          "owner": "clang-tidy",
+          "fileLocation": [
+            "relative",
+            "${workspaceFolder}"
+          ],
+          "pattern": {
+            "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error|note):\\s+(.*?)(?:\\s+\\[(.*)\\])?$",
+            "file": 1,
+            "line": 2,
+            "column": 3,
+            "severity": 4,
+            "message": 5,
+            "code": 6
+          }
+        }
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "Static Analysis: clang-tidy active file",
+      "type": "shell",
+      "command": "clang-tidy",
+      "args": [
+        "${file}",
+        "-p",
+        "${workspaceFolder}",
+        "--config-file=${workspaceFolder}/.clang-tidy"
+      ],
+      "problemMatcher": [
+        {
+          "owner": "clang-tidy",
+          "fileLocation": [
+            "relative",
+            "${workspaceFolder}"
+          ],
+          "pattern": {
+            "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error|note):\\s+(.*?)(?:\\s+\\[(.*)\\])?$",
+            "file": 1,
+            "line": 2,
+            "column": 3,
+            "severity": 4,
+            "message": 5,
+            "code": 6
+          }
+        }
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "Static Analysis: clang-tidy project with fixes",
+      "type": "shell",
+      "command": "${workspaceFolder}/.devenvironment/run-clang-tidy.sh",
+      "options": {
+        "env": {
+          "FIX": "1"
+        }
+      },
+      "problemMatcher": [
+        {
+          "owner": "clang-tidy",
+          "fileLocation": [
+            "relative",
+            "${workspaceFolder}"
+          ],
+          "pattern": {
+            "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error|note):\\s+(.*?)(?:\\s+\\[(.*)\\])?$",
+            "file": 1,
+            "line": 2,
+            "column": 3,
+            "severity": 4,
+            "message": 5,
+            "code": 6
+          }
+        }
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "Docs: Generate Doxygen",
+      "type": "shell",
+      "command": "${workspaceFolder}/.devenvironment/generate-docs.sh",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "Docs: Lint docs",
+      "type": "shell",
+      "command": "${workspaceFolder}/.devenvironment/docs-lint.sh",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "Docs: Serve Doxygen",
+      "type": "shell",
+      "command": "python3",
+      "args": [
+        "-m",
+        "http.server",
+        "8090",
+        "--directory",
+        "${workspaceFolder}/docs/doxygen/html"
+      ],
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "Utility: Generate compile_commands.json",
+      "type": "shell",
+      "command": "${workspaceFolder}/.devenvironment/generate-compile-db.sh",
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "Utility: Doctor",
+      "type": "shell",
+      "command": "${workspaceFolder}/.devenvironment/doctor.sh",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "Utility: Dependency snapshot",
+      "type": "shell",
+      "command": "${workspaceFolder}/.devenvironment/dependency-snapshot.sh",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "Utility: Backup",
+      "type": "shell",
+      "command": "${workspaceFolder}/.devenvironment/backup.sh",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "Utility: ccache stats",
+      "type": "shell",
+      "command": "ccache",
+      "args": [
+        "--show-stats"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "Release: Build local artifacts",
+      "type": "shell",
+      "command": "${workspaceFolder}/.devenvironment/release-build.sh",
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "Utility: Check everything",
+      "type": "shell",
+      "command": "${workspaceFolder}/.devenvironment/check-all.sh",
+      "group": "test",
+      "problemMatcher": [
+        "$gcc",
+        {
+          "owner": "clang-tidy",
+          "fileLocation": [
+            "relative",
+            "${workspaceFolder}"
+          ],
+          "pattern": {
+            "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error|note):\\s+(.*?)(?:\\s+\\[(.*)\\])?$",
+            "file": 1,
+            "line": 2,
+            "column": 3,
+            "severity": 4,
+            "message": 5,
+            "code": 6
+          }
+        }
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    }
+  ]
+}

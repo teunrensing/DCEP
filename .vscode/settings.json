@@ -1,0 +1,72 @@
+{
+  "C_Cpp.intelliSenseEngine": "disabled",
+  "C_Cpp.errorSquiggles": "disabled",
+  "clangd.arguments": [
+    "--background-index",
+    "--clang-tidy",
+    "--compile-commands-dir=${workspaceFolder}",
+    "--completion-style=detailed",
+    "--header-insertion=never",
+    "--fallback-style=LLVM"
+  ],
+  "clangd.checkUpdates": true,
+  "editor.formatOnSave": true,
+  "editor.rulers": [
+    100
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "[c]": {
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+  },
+  "[cpp]": {
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+  },
+  "[h]": {
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+  },
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.associations": {
+    "*.ino": "cpp",
+    "*.tpp": "cpp",
+    "*.ipp": "cpp"
+  },
+  "files.exclude": {
+    "**/.pio": true,
+    "**/docs/doxygen": true
+  },
+  "search.exclude": {
+    "**/.pio": true,
+    "**/docs/doxygen": true
+  },
+  "errorLens.enabledDiagnosticLevels": [
+    "error",
+    "warning",
+    "info"
+  ],
+  "todo-tree.general.tags": [
+    "TODO",
+    "FIXME",
+    "HACK",
+    "NOTE",
+    "SAFETY"
+  ],
+  "doxdocgen.generic.authorName": "${env:USER}",
+  "doxdocgen.generic.order": [
+    "brief",
+    "param",
+    "return"
+  ],
+  "doxdocgen.c.firstLine": "/**",
+  "doxdocgen.c.lastLine": " */",
+  "doxdocgen.c.triggerSequence": "/**",
+  "doxdocgen.file.copyrightTag": [
+    "@copyright Copyright (c) ${year}"
+  ],
+  "platformio-ide.activateProjectOnTextEditorChange": true,
+  "platformio-ide.autoPreloadEnvTasks": true
+}
+

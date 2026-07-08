@@ -1,0 +1,16 @@
+{
+  "recommendations": [
+    "platformio.platformio-ide",
+    "llvm-vs-code-extensions.vscode-clangd",
+    "ms-vscode.cpptools",
+    "marus25.cortex-debug",
+    "spmeesseman.vscode-taskexplorer",
+    "usernamehw.errorlens",
+    "cschlosser.doxdocgen",
+    "gruntfuggly.todo-tree",
+    "streetsidesoftware.code-spell-checker",
+    "yzhang.markdown-all-in-one",
+    "mhutchie.git-graph"
+  ]
+}
+

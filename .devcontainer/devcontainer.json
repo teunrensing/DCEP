@@ -1,0 +1,49 @@
+{
+  "name": "PlatformIO Firmware",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "containerEnv": {
+    "DEVENV_TEAM_MODE": "0",
+    "PLATFORMIO_CORE_DIR": "/home/vscode/.platformio",
+    "CCACHE_DIR": "/home/vscode/.cache/ccache"
+  },
+  "runArgs": [
+    "--privileged"
+  ],
+  "mounts": [
+    "source=/dev/bus/usb,target=/dev/bus/usb,type=bind,consistency=cached",
+    "source=platformio-cache,target=/home/vscode/.platformio,type=volume",
+    "source=ccache-cache,target=/home/vscode/.cache/ccache,type=volume"
+  ],
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "remoteUser": "vscode",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "platformio.platformio-ide",
+        "llvm-vs-code-extensions.vscode-clangd",
+        "ms-vscode.cpptools",
+        "marus25.cortex-debug",
+        "spmeesseman.vscode-taskexplorer",
+        "usernamehw.errorlens",
+        "cschlosser.doxdocgen",
+        "gruntfuggly.todo-tree",
+        "streetsidesoftware.code-spell-checker",
+        "yzhang.markdown-all-in-one",
+        "mhutchie.git-graph"
+      ],
+      "settings": {
+        "C_Cpp.intelliSenseEngine": "disabled",
+        "clangd.arguments": [
+          "--background-index",
+          "--clang-tidy",
+          "--compile-commands-dir=${workspaceFolder}",
+          "--completion-style=detailed",
+          "--header-insertion=never"
+        ],
+        "editor.formatOnSave": true
+      }
+    }
+  }
+}

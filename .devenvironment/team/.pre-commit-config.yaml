@@ -1,0 +1,35 @@
+default_stages:
+  - pre-commit
+
+repos:
+  - repo: local
+    hooks:
+      - id: basic-file-safety
+        name: Basic file safety checks
+        entry: .devenvironment/pre-commit-basic.sh
+        language: system
+        pass_filenames: true
+
+      - id: clang-format
+        name: Format staged C and C++ files
+        entry: .devenvironment/pre-commit-format.sh
+        language: system
+        files: \.(c|cc|cpp|cxx|h|hh|hpp|hxx|ino)$
+        pass_filenames: true
+
+      - id: conventional-commit-message
+        name: Conventional commit message
+        entry: .devenvironment/commit-msg.sh
+        language: system
+        pass_filenames: true
+        stages:
+          - commit-msg
+
+      - id: platformio-pre-push
+        name: PlatformIO build and static analysis before push
+        entry: .devenvironment/pre-push-check.sh
+        language: system
+        pass_filenames: false
+        stages:
+          - pre-push
+
