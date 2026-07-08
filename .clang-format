@@ -1,3 +1,4 @@
+---
 BasedOnStyle: LLVM
 Language: Cpp
 Standard: c++17
@@ -18,4 +19,7 @@ NamespaceIndentation: None
 SpaceBeforeParens: ControlStatements
 SpacesInParentheses: false
 Cpp11BracedListStyle: true
-
+# Ensures consistent spacing between function definitions
+KeepEmptyLinesAtTheStartOfBlocks: false
+MaxEmptyLinesToKeep: 1
+---
